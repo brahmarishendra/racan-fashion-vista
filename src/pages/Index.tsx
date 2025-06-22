@@ -48,47 +48,63 @@ const Index = () => {
     { text: "Catalog", href: "#" },
   ];
 
-  // T-shirts data
+  // Updated mobile menu links to match the image
+  const mobileMenuLinks = [
+    { text: "HOME", href: "#" },
+    { text: "SHOP", href: "#" },
+    { text: "ABOUT", href: "#" },
+    { text: "ACCOUNT", href: "#" },
+    { text: "ARTICLES", href: "#" },
+    { text: "CONTACT", href: "#" },
+  ];
+
+  // Updated T-shirts data with vindof.com affiliate links
   const tShirts = [
     {
       id: 1,
       name: "ART ADDICTS T-SHIRT",
       price: "Rs. 2,837.00",
       image: "https://vindof.com/cdn/shop/files/18-05-2025_VINDOF01066_copy.jpg?v=1747987027&width=1000",
+      affiliateLink: "https://vindof.com/products/art-addicts-t-shirt-1"
     },
     {
       id: 2,
       name: "ART ADDICTS T-SHIRT",
       price: "Rs. 2,837.00",
       image: "https://vindof.com/cdn/shop/files/18-05-2025_VINDOF01006_copy_cfca951e-0018-48d6-bf72-9baddf7bcd0e.jpg?v=1750245434&width=1000",
+      affiliateLink: "https://vindof.com/products/art-addicts-t-shirt-2"
     },
     {
       id: 3,
       name: "ART ADDICTS T-SHIRT",
       price: "Rs. 2,837.00",
       image: "https://vindof.com/cdn/shop/files/18-05-2025_VINDOF00912_copy_0d7896e4-c9b0-425f-9d52-35fc6e89f759.jpg?v=1750245563&width=1000",
+      affiliateLink: "https://vindof.com/products/art-addicts-t-shirt-3"
     },
   ];
 
-  // Premium shirts data
+  // Updated Premium shirts data with vindof.com affiliate links
   const premiumShirts = [
     {
       id: 4,
       name: "ART ADDICTS SHIRT",
       price: "Rs. 2,837.00",
       image: "https://i.pinimg.com/736x/6e/07/09/6e07092bd7489a4ba0740f1b49622621.jpg",
+      affiliateLink: "https://vindof.com/products/art-addicts-shirt-1"
     },
     {
       id: 5,
       name: "ART ADDICTS SHIRT",
       price: "Rs. 2,837.00",
       image: "https://i.pinimg.com/736x/2f/6b/69/2f6b6948709e0e27e4942e7ce1b3ab4a.jpg",
+      affiliateLink: "https://vindof.com/products/art-addicts-shirt-2"
     },
     {
       id: 6,
       name: "ART ADDICTS SHIRT",
       price: "Rs. 2,837.00",
       image: "https://i.pinimg.com/736x/4f/d1/21/4fd121f25ac18fc8be0e6b6c2c2489b5.jpg",
+      affiliateLink: "https://vindof.com/products/art-addicts-shirt-3"
     },
   ];
 
@@ -233,63 +249,28 @@ const Index = () => {
           </div>
         )}
 
-        {/* Mobile Menu Overlay */}
+        {/* Mobile Menu Overlay with big text and animations */}
         {isMenuOpen && (
           <div className="xl:hidden fixed inset-0 bg-white z-40 pt-14">
-            <nav className="flex flex-col items-start px-6 space-y-6 pt-8">
-              {/* Profile Section in Mobile Menu */}
-              <div className="flex items-center space-x-4 pb-6 border-b border-gray-200 w-full">
-                <img
-                  className="w-12 h-12 object-cover rounded-full"
-                  alt="User Profile"
-                  src="https://i.pinimg.com/736x/94/e6/cc/94e6cc707a02f2ae57b722cf3dddb9af.jpg"
-                />
-                <div>
-                  <p className="font-['Poppins',sans-serif] font-medium text-black text-lg">John Doe</p>
-                  <p className="font-['Outfit',sans-serif] text-gray-600 text-sm">john@example.com</p>
-                </div>
-              </div>
-
-              {/* Navigation Links */}
-              {navLinks.map((link, index) => (
+            <div className="flex flex-col justify-center items-start px-8 h-full space-y-8">
+              {/* Big animated menu items */}
+              {mobileMenuLinks.map((link, index) => (
                 <a
                   key={index}
                   href={link.href}
-                  className="font-['Outfit',sans-serif] font-normal text-black text-xl w-full py-2 hover:text-green-800 transition-colors"
+                  className={`font-['Outfit',sans-serif] font-normal text-6xl sm:text-7xl md:text-8xl transition-all duration-700 ease-out transform hover:scale-105 ${
+                    index === 0 ? 'text-black' : 'text-gray-400 hover:text-black'
+                  } animate-fade-in`}
+                  style={{
+                    animationDelay: `${index * 0.1}s`,
+                    animationFillMode: 'both'
+                  }}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.text}
                 </a>
               ))}
-
-              {/* Additional Menu Items */}
-              <a
-                href="#"
-                className="font-['Outfit',sans-serif] font-normal text-black text-xl w-full py-2 hover:text-green-800 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Profile
-              </a>
-              <a
-                href="#"
-                className="font-['Outfit',sans-serif] font-normal text-black text-xl w-full py-2 hover:text-green-800 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Orders
-              </a>
-              <a
-                href="#"
-                className="font-['Outfit',sans-serif] font-normal text-black text-xl w-full py-2 hover:text-green-800 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Settings
-              </a>
-
-              {/* Try Racan Button */}
-              <button className="mt-8 h-12 bg-[#ff2c6a] rounded-[26px] px-8 font-['Poppins',sans-serif] font-medium text-white text-xl w-full hover:bg-[#e6245e] transition-colors">
-                Try Racan
-              </button>
-            </nav>
+            </div>
           </div>
         )}
 
@@ -336,7 +317,7 @@ const Index = () => {
           </div>
         </section>
 
-        {/* T-shirts For Men Section */}
+        {/* T-shirts For Men Section with increased mobile height */}
         <section className="mt-8 sm:mt-12 md:mt-16 lg:mt-[83px] px-4 md:px-6 lg:px-8 xl:px-[155px]">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 lg:mb-10">
             <h2 className="font-['Shinko_Sans-Regular',sans-serif] font-normal text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl mb-4 sm:mb-0 animate-fade-in hover:text-gray-700 transition-colors cursor-default">
@@ -355,9 +336,12 @@ const Index = () => {
 
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10">
             {tShirts.map((shirt, index) => (
-              <div
+              <a
                 key={shirt.id}
-                className="w-full aspect-[3/4] relative overflow-hidden shadow-lg group cursor-pointer animate-fade-in hover:scale-105 transform transition-all duration-300"
+                href={shirt.affiliateLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full aspect-[3/4] sm:aspect-[3/5] relative overflow-hidden shadow-lg group cursor-pointer animate-fade-in hover:scale-105 transform transition-all duration-300"
                 style={{
                   backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${shirt.image})`,
                   backgroundSize: "cover",
@@ -393,7 +377,7 @@ const Index = () => {
                 >
                   <ShoppingCart className="text-white w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
                 </button>
-              </div>
+              </a>
             ))}
           </div>
         </section>
@@ -463,8 +447,11 @@ const Index = () => {
           {/* Changed from grid-cols-4 to grid-cols-3 to match T-shirts */}
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10">
             {premiumShirts.map((shirt, index) => (
-              <div
+              <a
                 key={shirt.id}
+                href={shirt.affiliateLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full aspect-[3/4] relative overflow-hidden shadow-lg group cursor-pointer animate-fade-in hover:scale-105 transform transition-all duration-300"
                 style={{
                   backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${shirt.image})`,
@@ -501,7 +488,7 @@ const Index = () => {
                 >
                   <ShoppingCart className="text-white w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
                 </button>
-              </div>
+              </a>
             ))}
           </div>
         </section>
