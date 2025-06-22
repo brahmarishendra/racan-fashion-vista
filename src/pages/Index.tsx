@@ -65,21 +65,21 @@ const Index = () => {
       name: "ART ADDICTS T-SHIRT",
       price: "Rs. 2,837.00",
       image: "https://vindof.com/cdn/shop/files/18-05-2025_VINDOF01066_copy.jpg?v=1747987027&width=1000",
-      affiliateLink: "https://vindof.com/products/art-addicts-t-shirt-1"
+      affiliateLink: "https://vindof.com/products/art-addicts-t-shirt"
     },
     {
       id: 2,
-      name: "ART ADDICTS T-SHIRT",
+      name: "PRETENDING T-SHIRT",
       price: "Rs. 2,837.00",
       image: "https://vindof.com/cdn/shop/files/18-05-2025_VINDOF01006_copy_cfca951e-0018-48d6-bf72-9baddf7bcd0e.jpg?v=1750245434&width=1000",
-      affiliateLink: "https://vindof.com/products/art-addicts-t-shirt-2"
+      affiliateLink: "https://vindof.com/products/pretending-t-shirt"
     },
     {
       id: 3,
-      name: "ART ADDICTS T-SHIRT",
+      name: "CREATIVE MINDS T-SHIRT",
       price: "Rs. 2,837.00",
       image: "https://vindof.com/cdn/shop/files/18-05-2025_VINDOF00912_copy_0d7896e4-c9b0-425f-9d52-35fc6e89f759.jpg?v=1750245563&width=1000",
-      affiliateLink: "https://vindof.com/products/art-addicts-t-shirt-3"
+      affiliateLink: "https://vindof.com/products/creative-minds-t-shirt"
     },
   ];
 
@@ -87,24 +87,24 @@ const Index = () => {
   const premiumShirts = [
     {
       id: 4,
-      name: "ART ADDICTS SHIRT",
-      price: "Rs. 2,837.00",
-      image: "https://i.pinimg.com/736x/6e/07/09/6e07092bd7489a4ba0740f1b49622621.jpg",
-      affiliateLink: "https://vindof.com/products/art-addicts-shirt-1"
+      name: "PREMIUM ART SHIRT",
+      price: "Rs. 3,500.00",
+      image: "https://vindof.com/cdn/shop/files/premium-art-shirt.jpg?v=1750000000&width=1000",
+      affiliateLink: "https://vindof.com/products/premium-art-shirt"
     },
     {
       id: 5,
-      name: "ART ADDICTS SHIRT",
-      price: "Rs. 2,837.00",
-      image: "https://i.pinimg.com/736x/2f/6b/69/2f6b6948709e0e27e4942e7ce1b3ab4a.jpg",
-      affiliateLink: "https://vindof.com/products/art-addicts-shirt-2"
+      name: "DESIGNER COLLECTION",
+      price: "Rs. 3,200.00",
+      image: "https://vindof.com/cdn/shop/files/designer-collection.jpg?v=1750000001&width=1000",
+      affiliateLink: "https://vindof.com/products/designer-collection"
     },
     {
       id: 6,
-      name: "ART ADDICTS SHIRT",
-      price: "Rs. 2,837.00",
-      image: "https://i.pinimg.com/736x/4f/d1/21/4fd121f25ac18fc8be0e6b6c2c2489b5.jpg",
-      affiliateLink: "https://vindof.com/products/art-addicts-shirt-3"
+      name: "LUXURY CASUAL SHIRT",
+      price: "Rs. 3,800.00",
+      image: "https://vindof.com/cdn/shop/files/luxury-casual.jpg?v=1750000002&width=1000",
+      affiliateLink: "https://vindof.com/products/luxury-casual-shirt"
     },
   ];
 
@@ -147,47 +147,47 @@ const Index = () => {
     <div className="bg-white w-full min-h-screen">
       <div className="bg-white overflow-hidden w-full mx-auto relative">
         {/* Header - Made smaller */}
-        <header className="w-full h-12 md:h-14 lg:h-16 relative bg-white flex items-center justify-between px-4 md:px-6 lg:px-[106px]">
+        <header className="w-full h-10 md:h-12 lg:h-14 relative bg-white flex items-center justify-between px-4 md:px-6 lg:px-[106px]">
           {/* Mobile Menu Button - Left Side */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="xl:hidden z-50 relative order-1"
           >
             {isMenuOpen ? (
-              <X className="w-6 h-6 text-black" />
+              <X className="w-5 h-5 text-black" />
             ) : (
-              <Menu className="w-6 h-6 text-black" />
+              <Menu className="w-5 h-5 text-black" />
             )}
           </button>
 
           {/* Logo - Center on mobile, left on desktop */}
           <div className="flex items-center order-2 xl:order-1">
             <img
-              className="h-5 md:h-6 lg:h-7 object-cover animate-fade-in"
+              className="h-4 md:h-5 lg:h-6 object-cover animate-fade-in"
               alt="Racan Logo"
               src="https://i.postimg.cc/rsYBTFzm/image-41.png"
             />
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden xl:flex space-x-8 2xl:space-x-16 order-2">
+          <nav className="hidden xl:flex space-x-6 2xl:space-x-12 order-2">
             <a
               href="#"
-              className="font-['Outfit',sans-serif] font-normal text-black text-base xl:text-lg 2xl:text-xl hover:text-green-800 transition-colors relative group animate-fade-in"
+              className="font-['Outfit',sans-serif] font-normal text-black text-sm xl:text-base 2xl:text-lg hover:text-green-800 transition-colors relative group animate-fade-in"
             >
               Home
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-800 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
               href="#"
-              className="font-['Outfit',sans-serif] font-normal text-black text-base xl:text-lg 2xl:text-xl hover:text-green-800 transition-colors relative group animate-fade-in"
+              className="font-['Outfit',sans-serif] font-normal text-black text-sm xl:text-base 2xl:text-lg hover:text-green-800 transition-colors relative group animate-fade-in"
             >
               New
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-800 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
               href="#"
-              className="font-['Outfit',sans-serif] font-normal text-black text-base xl:text-lg 2xl:text-xl hover:text-green-800 transition-colors relative group animate-fade-in"
+              className="font-['Outfit',sans-serif] font-normal text-black text-sm xl:text-base 2xl:text-lg hover:text-green-800 transition-colors relative group animate-fade-in"
             >
               Catalog
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-800 transition-all duration-300 group-hover:w-full"></span>
@@ -199,12 +199,12 @@ const Index = () => {
             {/* Shopping Bag Icon - Fixed */}
             <button 
               onClick={toggleCart}
-              className="relative w-7 h-7 md:w-8 md:h-8 xl:w-9 xl:h-9 bg-[#eeeeee] rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors"
+              className="relative w-6 h-6 md:w-7 md:h-7 xl:w-8 xl:h-8 bg-[#eeeeee] rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors"
             >
               <img
                 src="https://img.icons8.com/?size=100&id=3686&format=png&color=000000"
                 alt="Shopping Bag"
-                className="w-3 h-3 md:w-4 md:h-4 xl:w-5 xl:h-5"
+                className="w-3 h-3 md:w-3.5 md:h-3.5 xl:w-4 xl:h-4"
               />
               {cartItems.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-[#ff2c6a] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold">
@@ -214,13 +214,13 @@ const Index = () => {
             </button>
 
             {/* Try Racan Button - Desktop Only */}
-            <button className="hidden xl:block h-8 xl:h-9 bg-[#ff2c6a] rounded-[20px] px-4 xl:px-5 font-['Poppins',sans-serif] font-medium text-white text-sm xl:text-base hover:bg-[#e6245e] transition-colors">
+            <button className="hidden xl:block h-7 xl:h-8 bg-[#ff2c6a] rounded-[20px] px-3 xl:px-4 font-['Poppins',sans-serif] font-medium text-white text-xs xl:text-sm hover:bg-[#e6245e] transition-colors">
               Try Racan
             </button>
 
             {/* Profile Image - Desktop Only */}
             <img
-              className="hidden xl:block w-8 xl:w-9 h-8 xl:h-9 object-cover rounded-full"
+              className="hidden xl:block w-7 xl:w-8 h-7 xl:h-8 object-cover rounded-full"
               alt="User Profile"
               src="https://i.pinimg.com/736x/94/e6/cc/94e6cc707a02f2ae57b722cf3dddb9af.jpg"
             />
@@ -229,7 +229,7 @@ const Index = () => {
 
         {/* Cart Dropdown */}
         {isCartOpen && (
-          <div className="fixed top-16 right-4 md:right-6 lg:right-[106px] w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-4">
+          <div className="fixed top-12 right-4 md:right-6 lg:right-[106px] w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-4">
             <h3 className="font-['Poppins',sans-serif] font-medium text-lg mb-4">Shopping Cart ({cartItems.length})</h3>
             {cartItems.length === 0 ? (
               <p className="text-gray-500">Your cart is empty</p>
@@ -249,22 +249,15 @@ const Index = () => {
           </div>
         )}
 
-        {/* Mobile Menu Overlay with big text and animations */}
+        {/* Mobile Menu Overlay - Restored previous version */}
         {isMenuOpen && (
-          <div className="xl:hidden fixed inset-0 bg-white z-40 pt-14">
-            <div className="flex flex-col justify-center items-start px-8 h-full space-y-8">
-              {/* Big animated menu items */}
-              {mobileMenuLinks.map((link, index) => (
+          <div className="xl:hidden fixed inset-0 bg-white z-40 pt-12">
+            <div className="flex flex-col justify-center items-center h-full space-y-8">
+              {navLinks.map((link, index) => (
                 <a
                   key={index}
                   href={link.href}
-                  className={`font-['Outfit',sans-serif] font-normal text-6xl sm:text-7xl md:text-8xl transition-all duration-700 ease-out transform hover:scale-105 ${
-                    index === 0 ? 'text-black' : 'text-gray-400 hover:text-black'
-                  } animate-fade-in`}
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                    animationFillMode: 'both'
-                  }}
+                  className="font-['Outfit',sans-serif] font-normal text-black text-2xl hover:text-green-800 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.text}
@@ -317,7 +310,7 @@ const Index = () => {
           </div>
         </section>
 
-        {/* T-shirts For Men Section with increased mobile height */}
+        {/* T-shirts For Men Section */}
         <section className="mt-8 sm:mt-12 md:mt-16 lg:mt-[83px] px-4 md:px-6 lg:px-8 xl:px-[155px]">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 lg:mb-10">
             <h2 className="font-['Shinko_Sans-Regular',sans-serif] font-normal text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl mb-4 sm:mb-0 animate-fade-in hover:text-gray-700 transition-colors cursor-default">
@@ -341,17 +334,21 @@ const Index = () => {
                 href={shirt.affiliateLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full aspect-[3/4] sm:aspect-[3/5] relative overflow-hidden shadow-lg group cursor-pointer animate-fade-in hover:scale-105 transform transition-all duration-300"
+                className="w-full aspect-[3/4] sm:aspect-[3/5] md:aspect-[3/5] lg:aspect-[3/4] relative overflow-hidden shadow-lg group cursor-pointer animate-fade-in hover:scale-105 transform transition-all duration-300"
                 style={{
                   backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${shirt.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   borderRadius: "0px",
-                  animationDelay: `${index * 0.1}s`
+                  animationDelay: `${index * 0.1}s`,
+                  minHeight: "320px"
                 }}
               >
                 <button 
-                  onClick={() => toggleLike(shirt.id)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toggleLike(shirt.id);
+                  }}
                   className="absolute w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-[53px] xl:h-[53px] top-2 sm:top-3 md:top-4 lg:top-5 right-2 sm:right-3 md:right-4 lg:right-5 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
                 >
                   <span className={`text-sm sm:text-base md:text-lg lg:text-xl transition-colors ${
@@ -444,7 +441,6 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Changed from grid-cols-4 to grid-cols-3 to match T-shirts */}
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10">
             {premiumShirts.map((shirt, index) => (
               <a
@@ -452,17 +448,21 @@ const Index = () => {
                 href={shirt.affiliateLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full aspect-[3/4] relative overflow-hidden shadow-lg group cursor-pointer animate-fade-in hover:scale-105 transform transition-all duration-300"
+                className="w-full aspect-[3/4] sm:aspect-[3/5] md:aspect-[3/5] lg:aspect-[3/4] relative overflow-hidden shadow-lg group cursor-pointer animate-fade-in hover:scale-105 transform transition-all duration-300"
                 style={{
                   backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${shirt.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   borderRadius: "0px",
-                  animationDelay: `${index * 0.1}s`
+                  animationDelay: `${index * 0.1}s`,
+                  minHeight: "320px"
                 }}
               >
                 <button 
-                  onClick={() => toggleLike(shirt.id)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toggleLike(shirt.id);
+                  }}
                   className="absolute w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-[53px] xl:h-[53px] top-2 sm:top-3 md:top-4 lg:top-5 right-2 sm:right-3 md:right-4 lg:right-5 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
                 >
                   <span className={`text-sm sm:text-base md:text-lg lg:text-xl transition-colors ${
