@@ -1,4 +1,3 @@
-
 import { Menu, X, ShoppingCart, Instagram, Twitter, Facebook, Mail } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -123,8 +122,8 @@ const Index = () => {
   };
 
   return (
-    <div className="bg-white w-full">
-      <div className="bg-white overflow-hidden w-full max-w-[1536px] mx-auto relative">
+    <div className="bg-white w-full min-h-screen">
+      <div className="bg-white overflow-hidden w-full mx-auto relative">
         {/* Header */}
         <header className="w-full h-16 md:h-20 lg:h-[120px] relative bg-white flex items-center justify-between px-4 md:px-6 lg:px-[106px]">
           {/* Mobile Menu Button - Left Side */}
@@ -150,16 +149,27 @@ const Index = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden xl:flex space-x-8 2xl:space-x-16 order-2">
-            {navLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.href}
-                className="font-['Outfit',sans-serif] font-normal text-black text-lg xl:text-xl 2xl:text-2xl hover:text-green-800 transition-colors relative group"
-              >
-                {link.text}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-800 transition-all duration-300 group-hover:w-full"></span>
-              </a>
-            ))}
+            <a
+              href="#"
+              className="font-['Outfit',sans-serif] font-normal text-black text-lg xl:text-xl 2xl:text-2xl hover:text-green-800 transition-colors relative group"
+            >
+              Home
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-800 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a
+              href="#"
+              className="font-['Outfit',sans-serif] font-normal text-black text-lg xl:text-xl 2xl:text-2xl hover:text-green-800 transition-colors relative group"
+            >
+              New
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-800 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a
+              href="#"
+              className="font-['Outfit',sans-serif] font-normal text-black text-lg xl:text-xl 2xl:text-2xl hover:text-green-800 transition-colors relative group"
+            >
+              Catalog
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-800 transition-all duration-300 group-hover:w-full"></span>
+            </a>
           </nav>
 
           {/* Right Side Icons */}
@@ -296,7 +306,7 @@ const Index = () => {
         </section>
 
         {/* T-shirts For Men Section */}
-        <section className="mt-8 sm:mt-12 md:mt-16 lg:mt-[83px] px-4 md:px-8 lg:px-[155px]">
+        <section className="mt-8 sm:mt-12 md:mt-16 lg:mt-[83px] px-4 md:px-6 lg:px-8 xl:px-[155px]">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 lg:mb-10">
             <h2 className="font-['Shinko_Sans-Regular',sans-serif] font-normal text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl mb-4 sm:mb-0">
               T-shirts For Men
@@ -312,32 +322,33 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 lg:gap-8 xl:gap-10">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10">
             {tShirts.map((shirt) => (
               <div
                 key={shirt.id}
-                className="w-full aspect-[3/4] relative overflow-hidden shadow-lg group cursor-pointer rounded-lg"
+                className="w-full aspect-[3/4] relative overflow-hidden shadow-lg group cursor-pointer"
                 style={{
                   backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${shirt.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
+                  borderRadius: "0px",
                 }}
               >
                 <button 
                   onClick={() => toggleLike(shirt.id)}
-                  className="absolute w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-[53px] lg:h-[53px] top-3 md:top-4 lg:top-5 right-3 md:right-4 lg:right-5 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+                  className="absolute w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-[53px] xl:h-[53px] top-2 sm:top-3 md:top-4 lg:top-5 right-2 sm:right-3 md:right-4 lg:right-5 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
                 >
-                  <span className={`text-lg sm:text-xl transition-colors ${
+                  <span className={`text-sm sm:text-base md:text-lg lg:text-xl transition-colors ${
                     likedItems.includes(shirt.id) ? 'text-red-500' : 'text-white'
                   }`}>
                     {likedItems.includes(shirt.id) ? '❤️' : '♡'}
                   </span>
                 </button>
-                <div className="absolute bottom-0 left-0 p-3 sm:p-4 md:p-5 lg:p-6 text-white">
-                  <h3 className="font-['Poppins',sans-serif] font-medium text-sm sm:text-base md:text-lg lg:text-xl mb-2 md:mb-4 lg:mb-6">
+                <div className="absolute bottom-0 left-0 p-2 sm:p-3 md:p-4 lg:p-5 xl:p-6 text-white">
+                  <h3 className="font-['Poppins',sans-serif] font-medium text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-1 sm:mb-2 md:mb-3 lg:mb-4 xl:mb-6">
                     {shirt.name}
                   </h3>
-                  <p className="font-['Poppins',sans-serif] font-medium text-sm sm:text-base md:text-lg lg:text-xl">
+                  <p className="font-['Poppins',sans-serif] font-medium text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
                     {shirt.price}
                   </p>
                 </div>
@@ -346,9 +357,9 @@ const Index = () => {
                     e.preventDefault();
                     addToCart(shirt.id);
                   }}
-                  className="absolute w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-[54px] lg:h-[54px] bottom-10 sm:bottom-12 md:bottom-16 lg:bottom-[59px] right-3 md:right-4 lg:right-5 bg-[#ff2c6a] rounded-full flex items-center justify-center hover:bg-[#e6245e] transition-colors transform hover:scale-105"
+                  className="absolute w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-[54px] xl:h-[54px] bottom-8 sm:bottom-10 md:bottom-12 lg:bottom-14 xl:bottom-[59px] right-2 sm:right-3 md:right-4 lg:right-5 bg-[#ff2c6a] rounded-full flex items-center justify-center hover:bg-[#e6245e] transition-colors transform hover:scale-105"
                 >
-                  <ShoppingCart className="text-white w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                  <ShoppingCart className="text-white w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
                 </button>
               </div>
             ))}
@@ -401,7 +412,7 @@ const Index = () => {
         </section>
 
         {/* Premium shirts Section */}
-        <section className="mt-8 sm:mt-12 md:mt-16 lg:mt-[69px] px-4 md:px-8 lg:px-[152px] pb-8 sm:pb-12 md:pb-16 lg:pb-[85px]">
+        <section className="mt-8 sm:mt-12 md:mt-16 lg:mt-[69px] px-4 md:px-6 lg:px-8 xl:px-[152px] pb-8 sm:pb-12 md:pb-16 lg:pb-[85px]">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 lg:mb-10">
             <h2 className="font-['Shinko_Sans-Regular',sans-serif] font-normal text-black text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl mb-4 sm:mb-0">
               Premium shirts
@@ -417,32 +428,33 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6 lg:gap-8 xl:gap-10">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10">
             {premiumShirts.map((shirt) => (
               <div
                 key={shirt.id}
-                className="w-full aspect-[3/4] relative overflow-hidden shadow-lg group cursor-pointer rounded-lg"
+                className="w-full aspect-[3/4] relative overflow-hidden shadow-lg group cursor-pointer"
                 style={{
                   backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${shirt.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
+                  borderRadius: "0px",
                 }}
               >
                 <button 
                   onClick={() => toggleLike(shirt.id)}
-                  className="absolute w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-[53px] lg:h-[53px] top-3 md:top-4 lg:top-5 right-3 md:right-4 lg:right-5 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+                  className="absolute w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-[53px] xl:h-[53px] top-2 sm:top-3 md:top-4 lg:top-5 right-2 sm:right-3 md:right-4 lg:right-5 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
                 >
-                  <span className={`text-lg sm:text-xl transition-colors ${
+                  <span className={`text-sm sm:text-base md:text-lg lg:text-xl transition-colors ${
                     likedItems.includes(shirt.id) ? 'text-red-500' : 'text-white'
                   }`}>
                     {likedItems.includes(shirt.id) ? '❤️' : '♡'}
                   </span>
                 </button>
-                <div className="absolute bottom-0 left-0 p-3 sm:p-4 md:p-5 lg:p-6 text-white">
-                  <h3 className="font-['Poppins',sans-serif] font-medium text-sm sm:text-base md:text-lg lg:text-xl mb-2 md:mb-4 lg:mb-6">
+                <div className="absolute bottom-0 left-0 p-2 sm:p-3 md:p-4 lg:p-5 xl:p-6 text-white">
+                  <h3 className="font-['Poppins',sans-serif] font-medium text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-1 sm:mb-2 md:mb-3 lg:mb-4 xl:mb-6">
                     {shirt.name}
                   </h3>
-                  <p className="font-['Poppins',sans-serif] font-medium text-sm sm:text-base md:text-lg lg:text-xl">
+                  <p className="font-['Poppins',sans-serif] font-medium text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
                     {shirt.price}
                   </p>
                 </div>
@@ -451,9 +463,9 @@ const Index = () => {
                     e.preventDefault();
                     addToCart(shirt.id);
                   }}
-                  className="absolute w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-[54px] lg:h-[54px] bottom-10 sm:bottom-12 md:bottom-16 lg:bottom-[59px] right-3 md:right-4 lg:right-5 bg-[#ff2c6a] rounded-full flex items-center justify-center hover:bg-[#e6245e] transition-colors transform hover:scale-105"
+                  className="absolute w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 xl:w-[54px] xl:h-[54px] bottom-8 sm:bottom-10 md:bottom-12 lg:bottom-14 xl:bottom-[59px] right-2 sm:right-3 md:right-4 lg:right-5 bg-[#ff2c6a] rounded-full flex items-center justify-center hover:bg-[#e6245e] transition-colors transform hover:scale-105"
                 >
-                  <ShoppingCart className="text-white w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                  <ShoppingCart className="text-white w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
                 </button>
               </div>
             ))}
