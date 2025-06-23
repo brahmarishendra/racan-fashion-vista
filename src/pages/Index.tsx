@@ -462,15 +462,15 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Limited-Time Offers Section */}
-        <section className="w-full mt-12 sm:mt-16 md:mt-20 lg:mt-[98px] bg-[#9fead33b] py-8 sm:py-12 md:py-16 lg:py-[76px]">
+        {/* Limited-Time Offers Section - Updated for mobile/tablet responsiveness */}
+        <section className="w-full mt-12 sm:mt-16 md:mt-20 lg:mt-[98px] bg-[#9fead33b] py-12 sm:py-16 md:py-20 lg:py-[76px]">
           <div className="px-4 md:px-8 lg:px-[95px]">
             <div className="flex flex-col lg:flex-row items-start mb-8 md:mb-12 lg:mb-[76px]">
-              <h2 className="font-['Spline_Sans_Mono',monospace] font-medium text-[#363535] text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[64px] leading-tight max-w-full lg:max-w-[650px] mb-4 lg:mb-0 animate-fade-in hover:text-[#2a2a2a] transition-colors cursor-default">
+              <h2 className="font-['Spline_Sans_Mono',monospace] font-medium text-[#363535] text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-[64px] leading-tight max-w-full lg:max-w-[650px] mb-4 lg:mb-0 animate-fade-in hover:text-[#2a2a2a] transition-colors cursor-default">
                 Vindof Limited-Time Offers
               </h2>
-              <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-[82px] lg:h-[82px] bg-[#ffe094] rounded-full border border-solid border-black flex items-center justify-center lg:ml-4 animate-pulse hover:scale-110 transform transition-all cursor-pointer">
-                <span className="font-['Outfit',sans-serif] font-medium text-[#ff2d6b] text-lg sm:text-xl md:text-2xl lg:text-[32px]">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 lg:w-[82px] lg:h-[82px] bg-[#ffe094] rounded-full border border-solid border-black flex items-center justify-center lg:ml-4 animate-pulse hover:scale-110 transform transition-all cursor-pointer">
+                <span className="font-['Outfit',sans-serif] font-medium text-[#ff2d6b] text-sm sm:text-base md:text-lg lg:text-[32px]">
                   40%
                 </span>
               </div>
@@ -479,18 +479,18 @@ const Index = () => {
             <div className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-10">
               <div className="w-full lg:w-2/3">
                 <img
-                  className="w-full h-48 sm:h-64 md:h-80 lg:h-[493px] object-cover rounded-lg"
+                  className="w-full h-64 sm:h-80 md:h-96 lg:h-[493px] object-cover rounded-lg"
                   alt="Limited time offer"
                   src="https://images.pexels.com/photos/8532609/pexels-photo-8532609.jpeg?auto=compress&cs=tinysrgb&w=800"
                 />
               </div>
               <div className="w-full lg:w-1/3 bg-white rounded-xl border border-solid border-black p-4 md:p-6 lg:p-[26px] flex flex-col items-center">
                 <img
-                  className="w-full h-40 sm:h-48 md:h-56 lg:h-[262px] object-cover mb-4 sm:mb-6 md:mb-8 lg:mb-10 rounded-lg"
+                  className="w-full h-48 sm:h-56 md:h-64 lg:h-[262px] object-cover mb-4 sm:mb-6 md:mb-8 lg:mb-10 rounded-lg"
                   alt="Pretending Tee"
                   src="https://images.pexels.com/photos/8532473/pexels-photo-8532473.jpeg?auto=compress&cs=tinysrgb&w=400"
                 />
-                <p className="font-['Spline_Sans_Mono',monospace] font-medium text-black text-xs sm:text-sm md:text-base lg:text-base text-center leading-relaxed">
+                <p className="font-['Spline_Sans_Mono',monospace] font-medium text-black text-xs sm:text-sm md:text-sm lg:text-base text-center leading-relaxed">
                   The Pretending Tee Featuring a painted portrait with a
                   zipper covering the eyes and the words "so — when do we
                   stop pretending,"
