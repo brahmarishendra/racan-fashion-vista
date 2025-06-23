@@ -1,4 +1,4 @@
-import { Menu, X, ShoppingCart, Instagram, Twitter, Facebook, Mail } from "lucide-react";
+import { Menu, X, ShoppingCart, Instagram, Twitter, Facebook, Mail, Trash2 } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -132,6 +132,23 @@ const Index = () => {
     console.log(`Added product ${productId} to cart`);
   };
 
+  // Remove from cart functionality
+  const removeFromCart = (productId: number) => {
+    setCartItems(prev => {
+      const index = prev.indexOf(productId);
+      if (index > -1) {
+        const newCart = [...prev];
+        newCart.splice(index, 1);
+        return newCart;
+      }
+      return prev;
+    });
+    toast({
+      title: "Removed from Cart",
+      description: "Product has been removed from your cart.",
+    });
+  };
+
   // Toggle like functionality
   const toggleLike = (productId: number) => {
     setLikedItems(prev => {
@@ -162,27 +179,41 @@ const Index = () => {
     return [...tShirts, ...premiumShirts].find(product => product.id === id);
   };
 
+  // Get unique cart items with counts
+  const getCartItemsWithCounts = () => {
+    const itemCounts = cartItems.reduce((acc, itemId) => {
+      acc[itemId] = (acc[itemId] || 0) + 1;
+      return acc;
+    }, {} as Record<number, number>);
+
+    return Object.entries(itemCounts).map(([itemId, count]) => ({
+      product: getProductById(Number(itemId)),
+      count,
+      id: Number(itemId)
+    }));
+  };
+
   return (
     <div className="bg-white w-full min-h-screen">
       <div className="bg-white overflow-hidden w-full mx-auto relative">
         {/* Header - Made bigger for mobile/tablet */}
-        <header className="w-full h-16 md:h-18 lg:h-20 xl:h-16 relative bg-white flex items-center justify-between px-4 md:px-6 lg:px-[106px]">
+        <header className="w-full h-20 md:h-22 lg:h-24 xl:h-16 relative bg-white flex items-center justify-between px-4 md:px-6 lg:px-[106px]">
           {/* Mobile Menu Button - Left Side */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="xl:hidden z-50 relative order-1"
+            className="xl:hidden z-50 relative order-1 transition-transform duration-200 hover:scale-110"
           >
             {isMenuOpen ? (
-              <X className="w-8 h-8 md:w-9 md:h-9 text-black" />
+              <X className="w-9 h-9 md:w-10 md:h-10 text-black" />
             ) : (
-              <Menu className="w-6 h-6 md:w-7 md:h-7 text-black" />
+              <Menu className="w-7 h-7 md:w-8 md:h-8 text-black" />
             )}
           </button>
 
           {/* Logo - Center on mobile, left on desktop */}
           <div className="flex items-center order-2 xl:order-1">
             <img
-              className="h-6 md:h-7 lg:h-8 xl:h-6 object-cover animate-fade-in"
+              className="h-7 md:h-8 lg:h-9 xl:h-6 object-cover animate-fade-in"
               alt="Racan Logo"
               src="https://i.postimg.cc/rsYBTFzm/image-41.png"
             />
@@ -218,12 +249,12 @@ const Index = () => {
             {/* Shopping Bag Icon - Fixed */}
             <button 
               onClick={toggleCart}
-              className="relative w-9 h-9 md:w-10 md:h-10 xl:w-8 xl:h-8 bg-[#eeeeee] rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors"
+              className="relative w-10 h-10 md:w-11 md:h-11 xl:w-8 xl:h-8 bg-[#eeeeee] rounded-full flex items-center justify-center hover:bg-gray-300 transition-colors"
             >
               <img
                 src="https://img.icons8.com/?size=100&id=3686&format=png&color=000000"
                 alt="Shopping Bag"
-                className="w-4 h-4 md:w-5 md:h-5 xl:w-4 xl:h-4"
+                className="w-5 h-5 md:w-6 md:h-6 xl:w-4 xl:h-4"
               />
               {cartItems.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-[#ff2c6a] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
@@ -248,27 +279,44 @@ const Index = () => {
 
         {/* Cart Dropdown */}
         {isCartOpen && (
-          <div className="fixed top-18 md:top-20 xl:top-16 right-4 md:right-6 lg:right-[106px] w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-4">
+          <div className="fixed top-20 md:top-22 lg:top-24 xl:top-16 right-4 md:right-6 lg:right-[106px] w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-4">
             <h3 className="font-['Poppins',sans-serif] font-medium text-lg mb-4">Shopping Cart ({cartItems.length})</h3>
             {cartItems.length === 0 ? (
               <p className="text-gray-500">Your cart is empty</p>
             ) : (
               <div className="space-y-2">
-                {cartItems.map((itemId, index) => {
-                  const product = getProductById(itemId);
-                  return (
+                {getCartItemsWithCounts().map((item, index) => (
+                  <div
+                    key={`${item.id}-${index}`}
+                    className="flex justify-between items-center py-2 border-b hover:bg-gray-50 transition-colors"
+                  >
                     <a
-                      key={index}
-                      href={product?.affiliateLink}
+                      href={item.product?.affiliateLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex justify-between items-center py-2 border-b hover:bg-gray-50 cursor-pointer transition-colors"
+                      className="flex-1 cursor-pointer"
                     >
-                      <span className="text-sm font-medium">{product?.name || `Product ${itemId}`}</span>
-                      <span className="text-sm text-gray-600">{product?.price || "Rs. 2,837.00"}</span>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium">{item.product?.name || `Product ${item.id}`}</span>
+                        <div className="flex items-center space-x-2">
+                          {item.count > 1 && (
+                            <span className="text-xs bg-gray-200 px-2 py-1 rounded-full">
+                              x{item.count}
+                            </span>
+                          )}
+                          <span className="text-sm text-gray-600">{item.product?.price || "Rs. 2,837.00"}</span>
+                        </div>
+                      </div>
                     </a>
-                  );
-                })}
+                    <button
+                      onClick={() => removeFromCart(item.id)}
+                      className="ml-2 p-1 text-red-500 hover:text-red-700 transition-colors"
+                      title="Remove from cart"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                ))}
                 <button className="w-full mt-4 bg-[#ff2c6a] text-white py-2 rounded-lg hover:bg-[#e6245e] transition-colors">
                   Checkout
                 </button>
@@ -277,23 +325,24 @@ const Index = () => {
           </div>
         )}
 
-        {/* Mobile Menu Overlay */}
+        {/* Mobile Menu Overlay with smooth animations */}
         {isMenuOpen && (
-          <div className="xl:hidden fixed inset-0 bg-white z-40 pt-16 md:pt-18">
+          <div className="xl:hidden fixed inset-0 bg-white z-40 pt-20 md:pt-22 animate-fade-in">
             <div className="flex flex-col justify-center items-center h-full space-y-8">
               {mobileMenuLinks.map((link, index) => (
                 <a
                   key={index}
                   href={link.href}
-                  className="font-['Outfit',sans-serif] font-normal text-black text-2xl hover:text-green-800 transition-colors"
+                  className="font-['Outfit',sans-serif] font-normal text-black text-2xl hover:text-green-800 transition-all duration-300 transform hover:scale-105"
                   onClick={() => setIsMenuOpen(false)}
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {link.text}
                 </a>
               ))}
               {/* Try Racan Button in Mobile Menu */}
               <button 
-                className="mt-8 h-12 bg-[#ff2c6a] rounded-[30px] px-8 font-['Poppins',sans-serif] font-medium text-white text-lg hover:bg-[#e6245e] transition-colors"
+                className="mt-8 h-12 bg-[#ff2c6a] rounded-[30px] px-8 font-['Poppins',sans-serif] font-medium text-white text-lg hover:bg-[#e6245e] transition-all duration-300 transform hover:scale-105"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Try Racan
@@ -362,14 +411,14 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10">
             {tShirts.map((shirt, index) => (
               <a
                 key={shirt.id}
                 href={shirt.affiliateLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full aspect-[3/4] relative overflow-hidden shadow-lg group cursor-pointer animate-fade-in hover:scale-105 transform transition-all duration-300 min-h-[420px] sm:min-h-[460px] md:min-h-[500px] lg:min-h-[540px]"
+                className="w-full aspect-[3/4] relative overflow-hidden shadow-lg group cursor-pointer animate-fade-in hover:scale-105 transform transition-all duration-300"
                 style={{
                   backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${shirt.image})`,
                   backgroundSize: "cover",
@@ -383,19 +432,19 @@ const Index = () => {
                     e.preventDefault();
                     toggleLike(shirt.id);
                   }}
-                  className="absolute w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-[53px] xl:h-[53px] top-3 sm:top-4 md:top-5 lg:top-6 right-3 sm:right-4 md:right-5 lg:right-6 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+                  className="absolute w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-[53px] xl:h-[53px] top-2 sm:top-3 md:top-4 lg:top-5 right-2 sm:right-3 md:right-4 lg:right-5 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
                 >
-                  <span className={`text-lg sm:text-xl md:text-2xl lg:text-3xl transition-colors ${
+                  <span className={`text-sm sm:text-lg md:text-xl lg:text-2xl transition-colors ${
                     likedItems.includes(shirt.id) ? 'text-red-500' : 'text-white'
                   }`}>
                     {likedItems.includes(shirt.id) ? '❤️' : '♡'}
                   </span>
                 </button>
-                <div className="absolute bottom-0 left-0 p-4 sm:p-5 md:p-6 lg:p-7 xl:p-7 text-white">
-                  <h3 className="font-['Poppins',sans-serif] font-medium text-base sm:text-lg md:text-xl lg:text-2xl xl:text-xl mb-3 sm:mb-4 md:mb-5 lg:mb-6 xl:mb-6">
+                <div className="absolute bottom-0 left-0 p-2 sm:p-3 md:p-4 lg:p-6 xl:p-7 text-white">
+                  <h3 className="font-['Poppins',sans-serif] font-medium text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-1 sm:mb-2 md:mb-3 lg:mb-4">
                     {shirt.name}
                   </h3>
-                  <p className="font-['Poppins',sans-serif] font-medium text-base sm:text-lg md:text-xl lg:text-2xl xl:text-xl">
+                  <p className="font-['Poppins',sans-serif] font-medium text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
                     {shirt.price}
                   </p>
                 </div>
@@ -404,9 +453,9 @@ const Index = () => {
                     e.preventDefault();
                     addToCart(shirt.id);
                   }}
-                  className="absolute w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-[54px] xl:h-[54px] bottom-14 sm:bottom-16 md:bottom-18 lg:bottom-20 xl:bottom-[59px] right-3 sm:right-4 md:right-5 lg:right-6 bg-[#ff2c6a] rounded-full flex items-center justify-center hover:bg-[#e6245e] transition-colors transform hover:scale-105"
+                  className="absolute w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-[54px] xl:h-[54px] bottom-10 sm:bottom-12 md:bottom-14 lg:bottom-16 xl:bottom-[59px] right-2 sm:right-3 md:right-4 lg:right-5 bg-[#ff2c6a] rounded-full flex items-center justify-center hover:bg-[#e6245e] transition-colors transform hover:scale-105"
                 >
-                  <ShoppingCart className="text-white w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
+                  <ShoppingCart className="text-white w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
                 </button>
               </a>
             ))}
@@ -475,14 +524,14 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10">
             {premiumShirts.map((shirt, index) => (
               <a
                 key={shirt.id}
                 href={shirt.affiliateLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full aspect-[3/4] relative overflow-hidden shadow-lg group cursor-pointer animate-fade-in hover:scale-105 transform transition-all duration-300 min-h-[420px] sm:min-h-[460px] md:min-h-[500px] lg:min-h-[540px]"
+                className="w-full aspect-[3/4] relative overflow-hidden shadow-lg group cursor-pointer animate-fade-in hover:scale-105 transform transition-all duration-300"
                 style={{
                   backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url(${shirt.image})`,
                   backgroundSize: "cover",
@@ -496,19 +545,19 @@ const Index = () => {
                     e.preventDefault();
                     toggleLike(shirt.id);
                   }}
-                  className="absolute w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-[53px] xl:h-[53px] top-3 sm:top-4 md:top-5 lg:top-6 right-3 sm:right-4 md:right-5 lg:right-6 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+                  className="absolute w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-[53px] xl:h-[53px] top-2 sm:top-3 md:top-4 lg:top-5 right-2 sm:right-3 md:right-4 lg:right-5 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
                 >
-                  <span className={`text-lg sm:text-xl md:text-2xl lg:text-3xl transition-colors ${
+                  <span className={`text-sm sm:text-lg md:text-xl lg:text-2xl transition-colors ${
                     likedItems.includes(shirt.id) ? 'text-red-500' : 'text-white'
                   }`}>
                     {likedItems.includes(shirt.id) ? '❤️' : '♡'}
                   </span>
                 </button>
-                <div className="absolute bottom-0 left-0 p-4 sm:p-5 md:p-6 lg:p-7 xl:p-7 text-white">
-                  <h3 className="font-['Poppins',sans-serif] font-medium text-base sm:text-lg md:text-xl lg:text-2xl xl:text-xl mb-3 sm:mb-4 md:mb-5 lg:mb-6 xl:mb-6">
+                <div className="absolute bottom-0 left-0 p-2 sm:p-3 md:p-4 lg:p-6 xl:p-7 text-white">
+                  <h3 className="font-['Poppins',sans-serif] font-medium text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-1 sm:mb-2 md:mb-3 lg:mb-4">
                     {shirt.name}
                   </h3>
-                  <p className="font-['Poppins',sans-serif] font-medium text-base sm:text-lg md:text-xl lg:text-2xl xl:text-xl">
+                  <p className="font-['Poppins',sans-serif] font-medium text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
                     {shirt.price}
                   </p>
                 </div>
@@ -517,9 +566,9 @@ const Index = () => {
                     e.preventDefault();
                     addToCart(shirt.id);
                   }}
-                  className="absolute w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-[54px] xl:h-[54px] bottom-14 sm:bottom-16 md:bottom-18 lg:bottom-20 xl:bottom-[59px] right-3 sm:right-4 md:right-5 lg:right-6 bg-[#ff2c6a] rounded-full flex items-center justify-center hover:bg-[#e6245e] transition-colors transform hover:scale-105"
+                  className="absolute w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-[54px] xl:h-[54px] bottom-10 sm:bottom-12 md:bottom-14 lg:bottom-16 xl:bottom-[59px] right-2 sm:right-3 md:right-4 lg:right-5 bg-[#ff2c6a] rounded-full flex items-center justify-center hover:bg-[#e6245e] transition-colors transform hover:scale-105"
                 >
-                  <ShoppingCart className="text-white w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8" />
+                  <ShoppingCart className="text-white w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6" />
                 </button>
               </a>
             ))}
