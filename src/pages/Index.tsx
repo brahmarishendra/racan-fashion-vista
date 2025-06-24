@@ -62,13 +62,11 @@ const Index = () => {
     { text: "Catalog", href: "#" },
   ];
 
-  // Mobile menu links
+  // Mobile menu links - Updated with requested items
   const mobileMenuLinks = [
     { text: "HOME", href: "#" },
-    { text: "SHOP", href: "#" },
     { text: "ABOUT", href: "#" },
-    { text: "ACCOUNT", href: "#" },
-    { text: "ARTICLES", href: "#" },
+    { text: "BLOGS & NEWS", href: "#" },
     { text: "CONTACT", href: "#" },
   ];
 
