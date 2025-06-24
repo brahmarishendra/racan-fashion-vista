@@ -55,11 +55,12 @@ const Index = () => {
     return () => clearInterval(slideInterval);
   }, [heroSlides.length]);
 
-  // Navigation links data
+  // Navigation links data - Updated to match mobile menu
   const navLinks = [
-    { text: "Home", href: "#" },
-    { text: "New", href: "#" },
-    { text: "Catalog", href: "#" },
+    { text: "HOME", href: "#" },
+    { text: "ABOUT", href: "#" },
+    { text: "BLOGS & NEWS", href: "#" },
+    { text: "CONTACT", href: "#" },
   ];
 
   // Mobile menu links - Updated with requested items
@@ -219,27 +220,16 @@ const Index = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden xl:flex space-x-6 2xl:space-x-12 order-2">
-            <a
-              href="#"
-              className="font-['Outfit',sans-serif] font-normal text-black text-sm xl:text-base 2xl:text-lg hover:text-green-800 transition-colors relative group animate-fade-in"
-            >
-              Home
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-800 transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a
-              href="#"
-              className="font-['Outfit',sans-serif] font-normal text-black text-sm xl:text-base 2xl:text-lg hover:text-green-800 transition-colors relative group animate-fade-in"
-            >
-              New
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-800 transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a
-              href="#"
-              className="font-['Outfit',sans-serif] font-normal text-black text-sm xl:text-base 2xl:text-lg hover:text-green-800 transition-colors relative group animate-fade-in"
-            >
-              Catalog
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-800 transition-all duration-300 group-hover:w-full"></span>
-            </a>
+            {navLinks.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                className="font-['Outfit',sans-serif] font-normal text-black text-sm xl:text-base 2xl:text-lg hover:text-green-800 transition-colors relative group animate-fade-in"
+              >
+                {link.text}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-800 transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            ))}
           </nav>
 
           {/* Right Side Icons */}
